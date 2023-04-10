@@ -40,3 +40,11 @@ names = ['Mary', 'Isla', 'Sam']
 
 secret_names = list(map(lambda x: random.choice(['Mr. Pink', 'Mr. Orange', 'Mr. Blonde']), names))
 print(secret_names)
+
+
+
+# Reduce
+from functools import reduce
+sum = reduce(lambda a, x: a + x, [0, 1, 2, 3, 4])
+print(sum)
+# => 10
