@@ -1,3 +1,6 @@
+# This course is based on the article "An introduction to functional programming" by Mary Rose Cook
+# https://codewords.recurse.com/issues/one/an-introduction-to-functional-programming
+
 # UNFUNCTIONAL:
 a = 0
 def increment1():
@@ -48,3 +51,72 @@ from functools import reduce
 sum = reduce(lambda a, x: a + x, [0, 1, 2, 3, 4])
 print(sum)
 # => 10
+
+
+# This code counts how often the word ‘Sam’ appears in a list of strings:
+sentences = ['Mary read a story to Sam and Isla.',
+             'Isla cuddled Sam.',
+             'Sam chortled.']
+
+sam_count = 0
+for sentence in sentences:
+    sam_count += sentence.count('Sam')
+
+print(sam_count)
+# => 3
+
+
+# Same code written as a reduce:
+sam_count = reduce(lambda a, x: a + x.count('Sam'), sentences, 0)
+print(sam_count)
+
+
+
+# Write declaratively, not imperatively
+# from random import random
+
+# time = 5
+# car_positions = [1, 1, 1]
+
+# while time:
+#     # decrease time
+#     time -= 1
+
+    # print('')
+    # for i in range(len(car_positions)):
+    #     # move car
+    #     if random() > 0.3:
+    #         car_positions[i] += 1
+
+        # draw car
+        # print('-' * car_positions[i])
+
+
+# More declarative programming:
+from random import random
+
+def move_cars():
+    for i, _ in enumerate(car_positions):
+        if random() > 0.3:
+            car_positions[i] += 1
+
+def draw_car(car_position):
+    print('-' * car_position)
+
+def run_step_of_race():
+    global time
+    time -= 1
+    move_cars()
+
+def draw():
+    print('')
+    for car_position in car_positions:
+        draw_car(car_position)
+
+time = 5
+car_positions = [1, 1, 1]
+
+while time:
+    run_step_of_race()
+    draw()
+
